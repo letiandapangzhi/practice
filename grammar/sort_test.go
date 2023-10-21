@@ -1,6 +1,9 @@
-package main
+package grammar
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 // 冒泡 两两对比 移动
 func sort1(data []int) {
@@ -51,7 +54,7 @@ func sort3(data []int) {
 	fmt.Println(data)
 }
 
-func main() {
+func TestSort(t *testing.T) {
 	data := []int{3, 1, 2, 4, 5, 6}
 	//sort1(data)
 	//sort2(data)

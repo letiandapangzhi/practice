@@ -1,8 +1,8 @@
-package main
+package grammar
 
 import "fmt"
 
-func main() {
+func int8_test() {
 	var a int8 = -128
 	var b int8 = -1
 	c := a / b

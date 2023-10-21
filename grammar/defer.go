@@ -1,4 +1,4 @@
-package main
+package grammar
 
 import (
 	"fmt"
@@ -37,7 +37,7 @@ func (t *TestType) deferTest(i int) *TestType {
 	return t
 }
 
-func main() {
+func defer_test() {
 	a := deferTest()
 	fmt.Println("返回结果", a) // 0
 

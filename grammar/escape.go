@@ -1,10 +1,10 @@
-package main
+package grammar
 
 import (
 	"strings"
 )
 
-func main() {
+func escape_test() {
 	// go build -gcflags="-m" escape.go
 	// 局部变量通常分配在栈上，当编译器分析到外部存在引用会内存逃逸分配到堆上
 	// 返回引用类型会出现内存逃逸，返回值类型不会，个人理解是值类型是一个拷贝

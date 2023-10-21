@@ -1,4 +1,4 @@
-package main
+package grammar
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ func live() People {
 	// People = stu
 }
 
-func main() {
+func interface_test() {
 	if live() == nil {
 		fmt.Println("AAAAAAA")
 	} else {

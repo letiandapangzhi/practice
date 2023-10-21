@@ -1,4 +1,4 @@
-package main
+package grammar
 
 import "fmt"
 
@@ -20,6 +20,6 @@ func nilTest() {
 
 }
 
-func main() {
+func nil_test() {
 	nilTest()
 }

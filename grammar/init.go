@@ -1,4 +1,4 @@
-package main
+package grammar
 
 import "fmt"
 
@@ -14,6 +14,6 @@ func init() {
 	fmt.Println("init 3")
 }
 
-func main() {
+func init_test() {
 	fmt.Println("Main function")
 }

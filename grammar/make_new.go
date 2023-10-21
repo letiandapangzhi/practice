@@ -1,4 +1,4 @@
-package main
+package grammar
 
 import "fmt"
 
@@ -12,6 +12,6 @@ func makeNewTest() {
 	fmt.Println(c, *d, c == nil, *d == nil)
 }
 
-func main() {
+func make_new_test() {
 	makeNewTest()
 }

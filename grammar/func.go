@@ -1,4 +1,4 @@
-package main
+package grammar
 
 type T string
 
@@ -20,6 +20,6 @@ func funcTest() {
 	//b.echo()
 }
 
-func main() {
+func func_test() {
 	funcTest()
 }

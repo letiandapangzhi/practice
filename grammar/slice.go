@@ -1,8 +1,8 @@
-package main
+package grammar
 
 import "fmt"
 
-func main() {
+func slice_tests() {
 	a := []int{1, 2, 3, 4}
 	b := a[:1] // [0:1]
 	c := a[1:] // [1:4]
