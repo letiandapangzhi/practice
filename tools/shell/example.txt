@@ -1,0 +1,6 @@
+apple
+banana abc
+cherry
+date
+banana
+fig
