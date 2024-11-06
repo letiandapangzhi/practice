@@ -1,4 +1,4 @@
-package main
+package helloAlgorithm
 
 import (
 	"fmt"
@@ -44,12 +44,25 @@ func TestLinkList(t *testing.T) {
 	// 查找值2
 	n0.Find(2)
 
+	// 初始化链表
+	head := NewLinkList([]int{8, 9, 10})
+
+	// 输出
+	head.Print()
+
 }
 
-// 链表节点结构体
+// 单向链表节点结构体（尾节点指向头节点->环型链表）
 type ListNode struct {
 	Val  int       // 节点值
 	Next *ListNode // 下一个节点地址
+}
+
+// 双向链表节点结构体
+type DoublyListNode struct {
+	Val  int
+	Prev *DoublyListNode // 上一个节点
+	Next *DoublyListNode // 下一个节点
 }
 
 func NewListNode(val int) *ListNode {
@@ -57,6 +70,16 @@ func NewListNode(val int) *ListNode {
 		Val:  val,
 		Next: nil,
 	}
+}
+
+func NewLinkList(data []int) *ListNode {
+	head := NewListNode(data[0])
+	node := head
+	for i := 1; i < len(data); i++ {
+		node.Next = NewListNode(data[i])
+		node = node.Next
+	}
+	return head
 }
 
 // 链表输出
@@ -110,7 +133,7 @@ func (l *ListNode) Find(val int) {
 	index := 0
 	for node.Next != nil {
 		if node.Val == val {
-			fmt.Printf("值%d首次出现在链表的索引%d位置", val, index)
+			fmt.Printf("值%d首次出现在链表的索引%d位置\n", val, index)
 			return
 		}
 		index++
