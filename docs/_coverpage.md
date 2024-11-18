@@ -1,12 +1,4 @@
-# docsify <small>3.5</small>
+# 大胖纸小站
 
-[GitHub](https://github.com/docsifyjs/docsify/)
-[Get Started](#quick-start)
-
-<!-- 背景图片 -->
-
-![](_media/bg.png)
-
-<!-- 背景色 -->
-
-![color](#f0f0f0)
+<!-- [GitHub](https://github.com/docsifyjs/docsify/)
+[Get Started](#quick-start) -->
