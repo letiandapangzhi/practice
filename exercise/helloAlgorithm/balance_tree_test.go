@@ -11,8 +11,9 @@ func TestBalanceTree(t *testing.T) {
 	bTree.Insert(1)
 	bTree.Insert(2)
 	bTree.Insert(3)
-
-	bTree.Remove(2)
+	bTree.Insert(4)
+	bTree.Root.Print()
+	bTree.Remove(3)
 	bTree.Root.Print()
 }
 
