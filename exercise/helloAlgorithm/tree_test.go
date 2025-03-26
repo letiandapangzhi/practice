@@ -29,7 +29,14 @@ func TestTree(t *testing.T) {
 	n1.Print()
 
 	// 二叉搜索树
-	search := NewSearchTree([]int{1, 2, 3})
+	search := NewSearchTree([]int{2, 1, 4, 3, 5, 6})
+	// 遍历输出
+	search.Root.Print()
+	// 搜索
+	search.Find(4)
+	search.Find(1)
+
+	search.Delete(4)
 	// 遍历输出
 	search.Root.Print()
 }
@@ -41,6 +48,7 @@ type TreeNode struct {
 	Right *TreeNode // 右子节点
 }
 
+// 构建树节点
 func NewTreeNode(val int) *TreeNode {
 	return &TreeNode{
 		Val:   val,
@@ -49,21 +57,22 @@ func NewTreeNode(val int) *TreeNode {
 	}
 }
 
+// 打印树
 func (t *TreeNode) Print() {
 	// 层序遍历
 	t.LevelOrder()
-	// 前序遍历
-	fmt.Println("前序遍历")
-	t.PrevOrder()
-	fmt.Println()
-	// 中序遍历
-	fmt.Println("中序遍历")
-	t.InOrder()
-	fmt.Println()
-	// 后序遍历
-	fmt.Println("后序遍历")
-	t.NextOrder()
-	fmt.Println()
+	// // 前序遍历
+	// fmt.Println("前序遍历")
+	// t.PrevOrder()
+	// fmt.Println()
+	// // 中序遍历
+	// fmt.Println("中序遍历")
+	// t.InOrder()
+	// fmt.Println()
+	// // 后序遍历
+	// fmt.Println("后序遍历")
+	// t.NextOrder()
+	// fmt.Println()
 }
 
 // 层序遍历
@@ -128,6 +137,7 @@ type SearchTree struct {
 	Root *TreeNode // 根节点指针
 }
 
+// 构建二叉搜索树
 func NewSearchTree(data []int) *SearchTree {
 	fmt.Println("构建二叉搜索树", data)
 	node := new(SearchTree)
@@ -171,5 +181,89 @@ func (s *SearchTree) Insert(val int) {
 	} else {
 		prev.Right = newNode
 	}
+}
 
+// 搜索
+func (s *SearchTree) Find(val int) {
+	node := s.Root
+	if node == nil {
+		fmt.Println("二叉搜索树不存在数据")
+		return
+	}
+
+	for node != nil {
+		if val == node.Val {
+			fmt.Printf("%d 在二叉搜索树中存在\n", val)
+			return
+		} else if val < node.Val {
+			node = node.Left
+		} else {
+			node = node.Right
+		}
+	}
+
+	fmt.Printf("%d 在二叉搜索树中不存在\n", val)
+}
+
+// 删除
+func (s *SearchTree) Delete(val int) {
+	if s.Root == nil {
+		fmt.Println("二叉搜索树不存在数据")
+		return
+	}
+
+	// 记录删除节点的上一个节点
+	prev := new(TreeNode)
+	node := s.Root
+	for node != nil {
+		if node.Val == val {
+			break
+		}
+		prev = node
+
+		if val < node.Val {
+			node = node.Left
+		} else {
+			node = node.Right
+		}
+	}
+	// 两种可能 找不到node = nil 找到 node 待删除节点
+	if node == nil {
+		fmt.Printf("%d 在二叉搜索树中不存在\n", val)
+		return
+	}
+	// 待删除节点node
+	if node.Left == nil || node.Right == nil {
+		// node子节点数0或1
+		// 获取删除节点子节点
+		child := new(TreeNode)
+		if node.Left != nil {
+			child = node.Left
+		} else {
+			child = node.Right
+		}
+
+		if node == s.Root {
+			// 删除节点是根节点
+			s.Root = child
+		} else {
+			// 删除节点非根节点,判断删除节点是上一个节点的左还是右子节点
+			if prev.Left == node {
+				prev.Left = child
+			} else {
+				prev.Right = child
+			}
+		}
+	} else {
+		// node子节点数2
+		// 从删除节点的右子树获取最小值，即右子树的中序遍历第一个节点
+		tmp := node.Right
+		for tmp.Left != nil {
+			tmp = tmp.Left
+		}
+		// 递归删除第一个节点，避免它有右子树丢失
+		s.Delete(tmp.Val)
+		// 递归回来，替换删除节点值
+		node.Val = tmp.Val
+	}
 }
