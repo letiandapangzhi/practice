@@ -1,0 +1,45 @@
+services:
+
+#  #前端网关nginx-gateay (只代理looklook，admin-api不在这里做代理)
+#  nginx-gateway:
+#    image: nginx:1.21.5
+#    container_name: nginx-gateway
+#    restart: always
+#    privileged: true
+#    environment:
+#      - TZ=Asia/Shanghai
+#    ports:
+#      - 8888:8081
+#    volumes:
+#      - ./deploy/nginx/conf.d:/etc/nginx/conf.d
+#      - ./data/nginx/log:/var/log/nginx
+#    networks:
+#      - looklook_net
+#    depends_on:
+#      - looklook
+
+  ff:
+    build: .
+    image: gomodd:v1.23.7
+    container_name: ff
+    environment:
+      # 时区上海 - Timezone Shanghai
+      TZ: Asia/Shanghai
+      GOPROXY: https://goproxy.cn,direct
+    ports:
+      - "8888:8888"
+    working_dir: /go/ff
+    volumes:
+      - .:/go/ff
+    privileged: true
+    restart: always
+    networks:
+      - ff_net
+
+networks:
+  ff_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
